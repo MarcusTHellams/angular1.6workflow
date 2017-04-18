@@ -1,0 +1,12 @@
+<div ng-if="$ctrl.list.size">
+    <div class="row">
+        <div class="col-sm-3 col-sm-offset-4">
+            <p>This is a List</p>
+            <ul class="list-group">
+                <li ng-repeat="item in $ctrl.list.toArray()" trackby="$index" class="list-group-item">{{$index+1}}. {{item}}
+                    <button type="button" class="btn btn-danger btn-xs pull-right" ng-click="$ctrl.deleteOne({index:$index})">Delete</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

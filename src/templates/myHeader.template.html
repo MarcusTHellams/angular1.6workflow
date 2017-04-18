@@ -1,0 +1,4 @@
+<h3>This is the myHeader component</h3>
+<p>{{$ctrl.headerName}}</p>
+<p><button type="button" class="btn btn-primary" ng-click="$ctrl.changeHeaderName(); $ctrl.changeTitle({ title: 'Marcus' });">Change Header name</button></p>
+<list-component list="$ctrl.list" delete-one="$ctrl.deleteFromList(index)"></list-component>
