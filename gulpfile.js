@@ -30,7 +30,8 @@ gulp.task('server', ['watch'], function () {
 gulp.task('server2', function () {
     gulp.src('dist')
         .pipe(server({
-            livereload: true
+            livereload: true,
+            port: 8181
         }));
 
 });

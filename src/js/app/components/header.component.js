@@ -9,8 +9,8 @@
             }
         });
 
-    MyHeader.$inject = ['myService', 'UtilityService', '$rootScope'];
-    function MyHeader(myService, UtilityService, $rootScope) {
+    MyHeader.$inject = ['myService', 'UtilityService', '$rootScope', 'ListService', '$scope'];
+    function MyHeader(myService, UtilityService, $rootScope, ListService, $scope) {
         var $ctrl = this;
         // $ctrl.changeTitle = $ctrl.changeTitle || angular.noop;
         $ctrl.changeHeaderName = changeHeaderName;
@@ -23,26 +23,24 @@
             }
         };
 
-        $ctrl.list = Immutable.List([
-            'Bacon',
-            'Eggs',
-            'Cheese',
-            'Butter',
-            'Bread',
-            'Milk',
-            'Brussel Sprouts',
-            'Steak',
-            'French Fries'
-        ]);
+        $ctrl.list = ListService.list;
 
         $ctrl.deleteFromList = deleteFromList;
 
         myService.callMe();
 
         function deleteFromList(index) {
-            $ctrl.list = $ctrl.list.delete(index);
+            $ctrl.list = ListService.removeFromList(index);
             $rootScope.$broadcast('justDeleted', { name: 'Marcus' });
         }
+
+        $scope.$watch(
+            function () {
+                return $ctrl.list;
+            },
+            function (newval, oldval) {
+                console.log(arguments);
+            });
 
         function changeHeaderName() {
             $ctrl.headerName = 'Marcus';

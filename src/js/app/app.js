@@ -2,6 +2,7 @@
     angular.module('app', [
         'app.controller',
         'app.components.header',
+        'app.services.list',
         'app.service',
         'ui.router'
     ])
